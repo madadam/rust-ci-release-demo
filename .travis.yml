@@ -1,0 +1,70 @@
+sudo: false
+language: generic
+env:
+  global:
+    - PROJECT_NAME=hello_world
+
+matrix:
+  include:
+    - os: linux
+      env: TARGET=x86_64-unknown-linux-gnu
+
+    # TODO: Figure out cross-compilation and uncomment these:
+    # - os: linux
+    #   env: TARGET=i686-unknown-linux-gnu FEATURES=use-mock-crust ONLY_DEPLOY=1
+
+    # - os: linux
+    #   env: TARGET=x86_64-unknown-linux-musl FEATURES=use-mock-crust ONLY_DEPLOY=1
+
+    # - os: linux
+    #   env: TARGET=armv7-unknown-linux-gnueabihf FEATURES=use-mock-crust ONLY_DEPLOY=1
+    #   # Extra packages only for this job
+    #   addons:
+    #     apt:
+    #       packages:
+    #         # Cross compiler and cross compiled C libraries
+    #         - gcc-arm-linux-gnueabihf
+    #         - libc6-armhf-cross
+    #         - libc6-dev-armhf-cross
+    #         # Transparent emulation
+    #         - qemu-user-static
+    #         - binfmt-support
+
+    - os: osx
+      env: TARGET=x86_64-apple-darwin
+
+branches:
+  only:
+    # Pushes and PRs to the master branch
+    - master
+    # Pushes to tags (will trigger deploy)
+    # This regex matches semantic versions like v1.2.3-rc4+2016.02.22
+    - /^v\d+\.\d+\.\d+.*$/
+
+cache:
+  directories:
+    - $HOME/.cargo
+
+before_install:
+  - export PATH="$PATH:$HOME/.cargo/bin"
+
+install:
+  - ./ci/travis/install.sh
+
+script:
+  - ./ci/travis/script.sh
+
+before_deploy:
+  - ./ci/travis/before_deploy.sh
+
+# Deploy happens only when pushing a tag and only for stable rust.
+deploy:
+  provider: releases
+  api_key:
+    secure: "jYtMFjw2vGqiakmUOH9H/4lN+iPDwtG2IoCTsGF8Jn5c74pebASN5so6nDkGhyZuo52hM1Q60xvhJU0eblA+7ryv2JV1kEnINFuJ31bnWf81oSEGmN3aEla2OWZe/nS8taVbIYEYA2DqNQeo6UX/sMUTCrWbh1VGnqNiWQv6j/wuAEKRlNVFqhnA42zsbTtX+Jzr+hdnrs33GbnRl8geDjDuqGb7Pk6FdDPysALuQmwRsrj3/IG6k/1AMDtFf8RSD0hFezoNvwq2k9b1iji5hJJDOAjHL74XDRGWg4dZovw1ImFSSeuHg86uRyxFj3b3OgP4MS32UxLQJ+yZvlKLOJ09AWBYmEpNdFL+GX4UIr99NMhT/5CPJNtWed8Lttr3p3RZCFVMNMWHFkI7aNbGZr0OVdDvX0zsRvKt+SPBB0N7EGlGaUKNiL6DuPMRLr0xSN224dsY8TTlfWWPYc3NYNaeRAFLGx7OZIlcB1S95zElgJD16DPTiGg9gs/8R10zKWcqklprvFF5f9yg53Fbuq6xrwhPWoRKFCVQjgBvKedTWtnYxu1RrtF7IuesGFWVK8I/6OJw5IIdvSy2ieDdXehZQoyw1LQQ4smwAZQjCdwfaCBZarSeqi2yYMRx+QZicUHEQM8G+GafhMEYDC8zRRTxvqTGgu79chFxczhcpJI="
+  file: ${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.tar.gz
+  skip_cleanup: true
+  draft: true
+  on:
+      tags: true
+      condition: (-n "$TARGET") && ("${CHANNEL:-stable}"=stable)
