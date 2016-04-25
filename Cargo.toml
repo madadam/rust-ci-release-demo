@@ -1,5 +1,5 @@
 [package]
-name = "ci-releases-demo"
+name = "hello_world"
 version = "0.0.1"
 authors = ["Adam Cigánek <adam.ciganek@gmail.com>"]
 
