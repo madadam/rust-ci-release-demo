@@ -14,7 +14,6 @@ TMP_DIR=$(mktempd)
 OUT_DIR=$(pwd)
 
 cp target/$TARGET/release/$PROJECT_NAME $TMP_DIR
-cp installer/common/*.config $TMP_DIR
 
 pushd $TMP_DIR
 tar czf $OUT_DIR/${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.tar.gz *
