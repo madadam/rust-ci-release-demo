@@ -65,6 +65,8 @@ deploy:
   file: ${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.tar.gz
   skip_cleanup: true
   draft: true
+  # name: ${TRAVIS_TAG}
+  # tag: ${TRAVIS_TAG}
   tag_name: ${TRAVIS_TAG}
   on:
       tags: true
