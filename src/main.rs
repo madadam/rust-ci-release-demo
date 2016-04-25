@@ -10,6 +10,8 @@ fn dummy() {}
 
 #[cfg(test)]
 mod tests {
+    use super::hello_world;
+
     #[test]
     fn it_works() {
         assert_eq!(hello_world(), "Hello world");
