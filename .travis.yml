@@ -67,7 +67,7 @@ deploy:
   draft: true
   # name: ${TRAVIS_TAG}
   # tag: ${TRAVIS_TAG}
-  tag_name: ${TRAVIS_TAG}
+  # tag_name: ${TRAVIS_TAG}
   on:
       tags: true
       condition: (-n "$TARGET") && ("${CHANNEL:-stable}"=stable)
