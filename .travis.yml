@@ -68,3 +68,6 @@ deploy:
   on:
       tags: true
       condition: (-n "$TARGET") && ("${CHANNEL:-stable}"=stable)
+
+notifications:
+  email: never
