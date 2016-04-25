@@ -6,6 +6,8 @@ fn hello_world() -> &'static str {
     "Hello world"
 }
 
+fn dummy() {}
+
 #[cfg(test)]
 mod tests {
     #[test]
