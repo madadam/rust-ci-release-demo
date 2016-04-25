@@ -1,0 +1,6 @@
+[package]
+name = "ci-releases-demo"
+version = "0.1.0"
+authors = ["Adam Cigánek <adam.ciganek@gmail.com>"]
+
+[dependencies]
