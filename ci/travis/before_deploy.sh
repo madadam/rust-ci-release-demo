@@ -12,9 +12,11 @@ export RUST_BACKTRACE=1
 cargo build --target $TARGET --release
 
 # Tag this commit if not already tagged.
+git config --global user.email adam.ciganek@gmail.com
+git config --global user.name madadam
 git fetch --tags
 
-if [ -z $(git tag -l | grep "$VERSION") ]; then
+if [ -z $(git tag -l "$VERSION") ]; then
   git tag $VERSION -am "Version $VERSION" $TRAVIS_COMMIT
   git push https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG} tag $VERSION > /dev/null 2>&1
 fi
