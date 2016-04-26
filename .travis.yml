@@ -7,17 +7,14 @@ env:
 matrix:
   include:
     - os: linux
-      env: TARGET=x86_64-unknown-linux-gnu
+      env: TARGET=x86_64-unknown-linux-gnu PLATFORM=linux-x64
 
     # TODO: Figure out cross-compilation and uncomment these:
     # - os: linux
-    #   env: TARGET=i686-unknown-linux-gnu FEATURES=use-mock-crust ONLY_DEPLOY=1
+    #   env: TARGET=i686-unknown-linux-gnu PLATFORM=linux-x86 FEATURES=use-mock-crust ONLY_DEPLOY=1
 
     # - os: linux
-    #   env: TARGET=x86_64-unknown-linux-musl FEATURES=use-mock-crust ONLY_DEPLOY=1
-
-    # - os: linux
-    #   env: TARGET=armv7-unknown-linux-gnueabihf FEATURES=use-mock-crust ONLY_DEPLOY=1
+    #   env: TARGET=armv7-unknown-linux-gnueabihf PLATFORM=armv7 FEATURES=use-mock-crust ONLY_DEPLOY=1
     #   # Extra packages only for this job
     #   addons:
     #     apt:
@@ -31,15 +28,12 @@ matrix:
     #         - binfmt-support
 
     - os: osx
-      env: TARGET=x86_64-apple-darwin
+      env: TARGET=x86_64-apple-darwin PLATFORM=osx-x64
 
 branches:
   only:
     # Pushes and PRs to the master branch
     - master
-    # Pushes to tags (will trigger deploy)
-    # This regex matches semantic versions like v1.2.3-rc4+2016.02.22
-    - /^v\d+\.\d+\.\d+.*$/
 
 cache:
   directories:
@@ -62,13 +56,13 @@ deploy:
   provider: releases
   api_key:
     secure: "siZOf8NjAdDKNWRTXN2KN76GAcvVGZ2+qm2zeSX0ePTQFtoMhB15Z52NSDVipSW81WZQ0/h8DxiHk/U+vKeAth33Q5zudk/o5hBSlfauZh2VicvweQmVBm1pIQQsPtkE7LJy2Uqhw+B9+KFrYGT3kgBo6fzXSxTeY13L8wPs7vT/LuB7J7OR2zAmGoK1IgYFwahlooXCY0G48x5sAs72yMb5Nx5DjaiGb8mSIYOQgWYRJL7gCfkDxKikzP9jvL4gTNHHYYfWjnxR089fIBCk9Mlbkich4s+tUe32M5Yd8dl1lCeAc0VHKeoSLFLNapqN/JNaSjcJ2Sd7o7hYOIFD1qL19TKE0duuy4yoPjXwXawpjAE96+4GpC/rfCGZCLQ/h4tWW3NfIEAlmyn7xops9e2EEkb0e4QwNhRnb1arXQxcBJRp1SnIL0ylhxFRbw8f5mDXWJrd7F7HOdCypseK/nYRLwwmMhGchYwDf0IE+5hg6uKWk2Ewf0AjtjGoywz58iynCprYh0AG0kfQrSU8KJUyrTLgGIOg9h8NmlOZoOSqIKVZY+0HKfIFP/XWlpES5rAgEpDp1KZkbe8jdbjLy2xS4AT+VNId8tBEYB17vgHvjK8LcvJU88h+iJWU5KMEMOow+P3Wa+3SD718ajyeaaPbmkkZLUTR1v29X+RF9C4="
-  file: ${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.tar.gz
+  file: ${PROJECT_NAME}-${TRAVIS_TAG}-${PLATFORM}.tar.gz
   skip_cleanup: true
   draft: true
   tag_name: ${TRAVIS_TAG}
   on:
       tags: true
-      condition: (-n "$TARGET") && ("${CHANNEL:-stable}"=stable)
+      condition: ("${CHANNEL:-stable}"=stable)
 
 notifications:
   email: never
