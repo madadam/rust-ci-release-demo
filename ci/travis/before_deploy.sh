@@ -13,7 +13,7 @@ cargo build --target $TARGET --release
 TMP_DIR=$(mktempd)
 OUT_DIR=$(pwd)
 
-NAME=$PROJECT_NAME-$TRAVIS_TAG-$PLATFORM
+NAME=$PROJECT_NAME-v$VERSION-$PLATFORM
 
 mkdir $TMP_DIR/$NAME
 cp target/$TARGET/release/$PROJECT_NAME $TMP_DIR/$NAME
