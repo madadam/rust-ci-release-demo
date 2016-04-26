@@ -10,6 +10,13 @@ mktempd() {
 export RUST_BACKTRACE=1
 cargo build --target $TARGET --release
 
+git pull --tags
+
+if [ -z $(git tag -l | grep "$VERSION") ]; then
+  git tag $VERSION -am "Version $VERSION" $TRAVIS_COMMIT
+  git push https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG} tag $VERSION > /dev/null 2>&1
+fi
+
 TMP_DIR=$(mktempd)
 OUT_DIR=$(pwd)
 
