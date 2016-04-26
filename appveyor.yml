@@ -20,7 +20,8 @@ install:
         Start-FileDownload "$url/Run%20Tests.ps1" -FileName "Run Tests.ps1"
         . ".\Install Rust.ps1"
         . ".\Install MinGW.ps1"
-        $env:VERSION = "0.0.44"
+        $env:VERSION = "0.0.45"
+        if $(env:VERSION) { $env:HAS_VERSION = true }
 
 platform:
   - x86
@@ -52,4 +53,4 @@ deploy:
     secure: o0zMhi1mljivXoMvdi567EDf0v8UraRJyA22enzbzhUL5uwBa7Vy5m13TzgNbaqc
   on:
     RUST_VERSION: stable
-    VERSION: true
+    HAS_VERSION: true
