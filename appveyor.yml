@@ -35,8 +35,9 @@ test_script:
   - ps: . ".\Run Tests.ps1"
 
 before_deploy:
-  - ps: . ".\ci\appveyor\before_deploy.ps1"
-  - ps: $env:VERSION = 0.0.41
+  - ps: |
+        . ".\ci\appveyor\before_deploy.ps1"
+        $env:VERSION = 0.0.42
 
 deploy:
   provider: GitHub
@@ -53,4 +54,4 @@ deploy:
   # deploy when a new tag is pushed and only on the stable channel
   on:
     RUST_VERSION: stable
-    VERSION: /.+/
+    VERSION: true
