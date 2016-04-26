@@ -22,7 +22,7 @@ install:
         . ".\Install MinGW.ps1"
 
         if ((git log -1) -match "[vV]ersion change to v?(.*)") {
-          $env:VERSION = $matches[1]
+          $env:PROJECT_VERSION = $matches[1]
           $env:DEPLOY = "true"
         }
 
@@ -44,6 +44,7 @@ before_deploy:
 
 deploy:
   provider: GitHub
+  tag: $PROJECT_VERSION
   draft: true
   # All the zipped artifacts will be deployed
   artifact: /.*\.zip/
