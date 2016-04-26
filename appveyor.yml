@@ -23,7 +23,7 @@ install:
 
         if ((git log -1) -match "[vV]ersion change to v?(.*)") {
           $env:VERSION = $matches[1]
-          $env:HAS_VERSION = true
+          $env:HAS_VERSION = "true"
         }
 
 platform:
