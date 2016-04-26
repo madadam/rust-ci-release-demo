@@ -20,7 +20,7 @@ install:
         Start-FileDownload "$url/Run%20Tests.ps1" -FileName "Run Tests.ps1"
         . ".\Install Rust.ps1"
         . ".\Install MinGW.ps1"
-        $env:VERSION = 0.0.43
+        $env:VERSION = "0.0.44"
 
 platform:
   - x86
