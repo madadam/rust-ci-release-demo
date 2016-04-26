@@ -18,9 +18,7 @@ matrix:
 
 branches:
   only:
-    # Pushes and PRs to the master branch
     - master
-    - /^v\d+\.\d+\.\d+.*$/
 
 cache:
   directories:
