@@ -28,7 +28,7 @@ cache:
 
 before_install:
   - export PATH="$PATH:$HOME/.cargo/bin"
-  - export VERSION=$(git log -1 | grep -i "version change to" | sed 's/version change to \(.*\)/i')
+  - export VERSION=$(git log -1 | grep -i "version change to" | sed 's/version change to v\?\(.*\)/i')
 
 install:
   - ./ci/travis/install.sh
