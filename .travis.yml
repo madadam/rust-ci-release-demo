@@ -29,6 +29,8 @@ before_install:
   # - export VERSION=$(git log -1 | grep -i "version change to" | sed "s/.*version change to v\{0,1\}//i")
   - export VERSION=$(git log -1 | grep -i "version change to" | sed "s/version change to //i")
   - bash -c 'echo $VERSION'
+  - bash -c 'echo $(git log -1 | grep -i "version change to")'
+  - bash -c 'echo $(git log -1 | grep -i "version change to" | sed "s/version change to //i")'
 
 install:
   - ./ci/travis/install.sh
