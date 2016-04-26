@@ -23,7 +23,7 @@ install:
 
         if ((git log -1) -match "[vV]ersion change to v?(.*)") {
           $env:VERSION = $matches[1]
-          $env:HAS_VERSION = "true"
+          $env:DEPLOY = "true"
         }
 
 platform:
@@ -55,5 +55,5 @@ deploy:
   auth_token:
     secure: o0zMhi1mljivXoMvdi567EDf0v8UraRJyA22enzbzhUL5uwBa7Vy5m13TzgNbaqc
   on:
+    DEPLOY: true
     RUST_VERSION: stable
-    HAS_VERSION: true
