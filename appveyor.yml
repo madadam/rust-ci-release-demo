@@ -20,6 +20,7 @@ install:
         Start-FileDownload "$url/Run%20Tests.ps1" -FileName "Run Tests.ps1"
         . ".\Install Rust.ps1"
         . ".\Install MinGW.ps1"
+        $env:VERSION = 0.0.43
 
 platform:
   - x86
@@ -35,9 +36,7 @@ test_script:
   - ps: . ".\Run Tests.ps1"
 
 before_deploy:
-  - ps: |
-        . ".\ci\appveyor\before_deploy.ps1"
-        $env:VERSION = 0.0.42
+  - ps: . ".\ci\appveyor\before_deploy.ps1"
 
 deploy:
   provider: GitHub
@@ -51,7 +50,6 @@ deploy:
   # - Enter the "encrypted value" below
   auth_token:
     secure: o0zMhi1mljivXoMvdi567EDf0v8UraRJyA22enzbzhUL5uwBa7Vy5m13TzgNbaqc
-  # deploy when a new tag is pushed and only on the stable channel
   on:
     RUST_VERSION: stable
     VERSION: true
