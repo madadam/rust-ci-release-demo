@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -ev
 
 # This works on both linux and osx
 mktempd() {
