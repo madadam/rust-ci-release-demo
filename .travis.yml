@@ -6,10 +6,10 @@ env:
 
 matrix:
   include:
-    - os: linux
-      env: >
-        TARGET=x86_64-unknown-linux-gnu
-        PLATFORM=linux-x64
+    # - os: linux
+    #   env: >
+    #     TARGET=x86_64-unknown-linux-gnu
+    #     PLATFORM=linux-x64
 
     - os: osx
       env: >
@@ -27,6 +27,7 @@ cache:
 before_install:
   - export PATH="$PATH:$HOME/.cargo/bin"
   - export VERSION=$(git log -1 | grep -i "version change to" | sed 's/^.*version change to v\?\(.*\)/\1/i')
+  - bash -c 'echo $VERSION'
 
 install:
   - ./ci/travis/install.sh
