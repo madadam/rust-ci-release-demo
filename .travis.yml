@@ -46,7 +46,7 @@ deploy:
   file: ${PROJECT_NAME}-v${VERSION}-${PLATFORM}.tar.gz
   skip_cleanup: true
   draft: true
-  tag_name: v${VERSION}
+  tag_name: ${VERSION}
   on:
       condition: ("${CHANNEL:-stable}"=stable) && (-n "$VERSION")
 
