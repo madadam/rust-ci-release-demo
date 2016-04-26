@@ -7,28 +7,14 @@ env:
 matrix:
   include:
     - os: linux
-      env: TARGET=x86_64-unknown-linux-gnu PLATFORM=linux-x64
-
-    # TODO: Figure out cross-compilation and uncomment these:
-    # - os: linux
-    #   env: TARGET=i686-unknown-linux-gnu PLATFORM=linux-x86 FEATURES=use-mock-crust ONLY_DEPLOY=1
-
-    # - os: linux
-    #   env: TARGET=armv7-unknown-linux-gnueabihf PLATFORM=armv7 FEATURES=use-mock-crust ONLY_DEPLOY=1
-    #   # Extra packages only for this job
-    #   addons:
-    #     apt:
-    #       packages:
-    #         # Cross compiler and cross compiled C libraries
-    #         - gcc-arm-linux-gnueabihf
-    #         - libc6-armhf-cross
-    #         - libc6-dev-armhf-cross
-    #         # Transparent emulation
-    #         - qemu-user-static
-    #         - binfmt-support
+      env: >
+        TARGET=x86_64-unknown-linux-gnu
+        PLATFORM=linux-x64
 
     - os: osx
-      env: TARGET=x86_64-apple-darwin PLATFORM=osx-x64
+      env: >
+        TARGET=x86_64-apple-darwin
+        PLATFORM=osx-x64
 
 branches:
   only:

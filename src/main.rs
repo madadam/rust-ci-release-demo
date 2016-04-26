@@ -1,5 +1,5 @@
 fn main() {
-    println!("{} {}", hello_world(), x);
+    println!("{}", hello_world());
 }
 
 fn hello_world() -> &'static str {
