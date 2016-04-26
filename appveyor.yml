@@ -35,8 +35,8 @@ test_script:
   - ps: . ".\Run Tests.ps1"
 
 before_deploy:
-  - ps: ".\ci\appveyor\before_deploy.ps1"
-  - ps: $env:VERSION = 0.0.39
+  - ps: . ".\ci\appveyor\before_deploy.ps1"
+  - ps: $env:VERSION = 0.0.40
 
 deploy:
   provider: GitHub
