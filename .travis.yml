@@ -26,7 +26,8 @@ cache:
 
 before_install:
   - export PATH="$PATH:$HOME/.cargo/bin"
-  - export VERSION=$(git log -1 | grep -i "version change to" | sed "s/.*version change to v\{0,1\}//i")
+  # - export VERSION=$(git log -1 | grep -i "version change to" | sed "s/.*version change to v\{0,1\}//i")
+  - export VERSION=$(git log -1 | grep -i "version change to" | sed "s/version change to //i")
   - bash -c 'echo $VERSION'
 
 install:
