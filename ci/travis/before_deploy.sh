@@ -10,7 +10,7 @@ mktempd() {
 export RUST_BACKTRACE=1
 cargo build --target $TARGET --release
 
-git pull --tags
+git fetch --tags
 
 if [ -z $(git tag -l | grep "$VERSION") ]; then
   git tag $VERSION -am "Version $VERSION" $TRAVIS_COMMIT
