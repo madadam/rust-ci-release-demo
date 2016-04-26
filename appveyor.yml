@@ -9,6 +9,7 @@ branches:
     - master
 
 clone_depth: 50
+skip_tags: true
 
 install:
   - ps: |
@@ -34,17 +35,11 @@ test_script:
   - ps: . ".\Run Tests.ps1"
 
 before_deploy:
-  # Generate artifacts for release
-  - cargo build --release
-  - mkdir staging
-  - copy target\release\%PROJECT_NAME%.exe staging
-  - cd staging
-  - 7z a ../%PROJECT_NAME%-%APPVEYOR_REPO_TAG_NAME%-%PLATFORM%.zip *
-  - appveyor PushArtifact ../%PROJECT_NAME%-%APPVEYOR_REPO_TAG_NAME%-%PLATFORM%.zip
+  - ps: ".\ci\appveyor\before_deploy.ps1"
+  - ps: $env:VERSION = 0.0.39
 
 deploy:
   provider: GitHub
-  description: "Windows release"
   draft: true
   # All the zipped artifacts will be deployed
   artifact: /.*\.zip/
@@ -58,4 +53,4 @@ deploy:
   # deploy when a new tag is pushed and only on the stable channel
   on:
     RUST_VERSION: stable
-    appveyor_repo_tag: true
+    VERSION: /.+/

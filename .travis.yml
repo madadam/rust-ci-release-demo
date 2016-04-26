@@ -38,7 +38,6 @@ script:
 before_deploy:
   - ./ci/travis/before_deploy.sh
 
-# Deploy happens only when pushing a tag and only for stable rust.
 deploy:
   provider: releases
   api_key:

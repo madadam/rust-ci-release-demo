@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Print commands, but do not expand them (to not reveal secure tokens).
 set -ev
 
 # This works on both linux and osx
@@ -10,6 +11,7 @@ mktempd() {
 export RUST_BACKTRACE=1
 cargo build --target $TARGET --release
 
+# Tag this commit if not already tagged.
 git fetch --tags
 
 if [ -z $(git tag -l | grep "$VERSION") ]; then
