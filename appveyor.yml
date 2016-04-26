@@ -21,9 +21,10 @@ install:
         . ".\Install Rust.ps1"
         . ".\Install MinGW.ps1"
 
-        (git -l) -match "[vV]ersion change to v?(.*)"
-        $env:VERSION = $matches[1]
-        if ($env:VERSION) { $env:HAS_VERSION = true }
+        if ((git -l) -match "[vV]ersion change to v?(.*)") {
+          $env:VERSION = $matches[1]
+          $env:HAS_VERSION = true
+        }
 
 platform:
   - x86
