@@ -11,16 +11,12 @@ Add-Content "$env:USERPROFILE\.git-credentials" "https://$env:GITHUB_TOKEN:x-oau
 
 git fetch --tags
 
-echo "This tag: $env:PROJECT_VERSION"
-echo "Existing tags:"
-git tag -l
-
 if (git tag -l "$env:PROJECT_VERSION") {
+  echo "Tag $env:PROJECT_VERSION already exists"
+} else {
   echo "Creating tag $env:PROJECT_VERSION"
   git tag $env:PROJECT_VERSION -am "Version $env:PROJECT_VERSION" $APPVEYOR_REPO_COMMIT
   git push tag $env:PROJECT_VERSION
-} else {
-  echo "Tag $env:PROJECT_VERSION already exists"
 }
 
 # Create the release archive
