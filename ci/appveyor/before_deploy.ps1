@@ -7,7 +7,7 @@ git config --global user.email adam.ciganek@gmail.com
 git config --global user.name madadam
 
 git config --global credential.helper store
-ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
 
 git fetch --tags
 

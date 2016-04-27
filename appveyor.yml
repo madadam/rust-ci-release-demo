@@ -1,6 +1,11 @@
 environment:
   global:
-    access_token:
+    ACCESS_TOKEN:
+      # TODO Regenerate this auth_token for your project, this one won't work for you. Here's how:
+      # - Go to 'https://github.com/settings/tokens/new' and generate a Token with only the
+      # `public_repo` scope enabled
+      # - Then go to 'https://ci.appveyor.com/tools/encrypt' and enter the newly generated token.
+      # - Enter the "encrypted value" below
       secure: o0zMhi1mljivXoMvdi567EDf0v8UraRJyA22enzbzhUL5uwBa7Vy5m13TzgNbaqc
     RUST_BACKTRACE: 1
     PROJECT_NAME: hello_world
@@ -50,12 +55,7 @@ deploy:
   draft: true
   # All the zipped artifacts will be deployed
   artifact: /.*\.zip/
-  # TODO Regenerate this auth_token for your project, this one won't work for you. Here's how:
-  # - Go to 'https://github.com/settings/tokens/new' and generate a Token with only the
-  # `public_repo` scope enabled
-  # - Then go to 'https://ci.appveyor.com/tools/encrypt' and enter the newly generated token.
-  # - Enter the "encrypted value" below
-  auth_token: $(access_token)
+  auth_token: $(ACCESS_TOKEN)
   on:
     DEPLOY: true
     RUST_VERSION: stable
