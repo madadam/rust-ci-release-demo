@@ -1,6 +1,6 @@
 environment:
   global:
-    ACCESS_TOKEN:
+    GITHUB_TOKEN:
       # TODO Regenerate this auth_token for your project, this one won't work for you. Here's how:
       # - Go to 'https://github.com/settings/tokens/new' and generate a Token with only the
       # `public_repo` scope enabled
@@ -55,7 +55,7 @@ deploy:
   draft: true
   # All the zipped artifacts will be deployed
   artifact: /.*\.zip/
-  auth_token: $(ACCESS_TOKEN)
+  auth_token: $(GITHUB_TOKEN)
   on:
     DEPLOY: true
     RUST_VERSION: stable

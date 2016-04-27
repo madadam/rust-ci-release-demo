@@ -40,8 +40,7 @@ before_deploy:
 
 deploy:
   provider: releases
-  api_key:
-    secure: "siZOf8NjAdDKNWRTXN2KN76GAcvVGZ2+qm2zeSX0ePTQFtoMhB15Z52NSDVipSW81WZQ0/h8DxiHk/U+vKeAth33Q5zudk/o5hBSlfauZh2VicvweQmVBm1pIQQsPtkE7LJy2Uqhw+B9+KFrYGT3kgBo6fzXSxTeY13L8wPs7vT/LuB7J7OR2zAmGoK1IgYFwahlooXCY0G48x5sAs72yMb5Nx5DjaiGb8mSIYOQgWYRJL7gCfkDxKikzP9jvL4gTNHHYYfWjnxR089fIBCk9Mlbkich4s+tUe32M5Yd8dl1lCeAc0VHKeoSLFLNapqN/JNaSjcJ2Sd7o7hYOIFD1qL19TKE0duuy4yoPjXwXawpjAE96+4GpC/rfCGZCLQ/h4tWW3NfIEAlmyn7xops9e2EEkb0e4QwNhRnb1arXQxcBJRp1SnIL0ylhxFRbw8f5mDXWJrd7F7HOdCypseK/nYRLwwmMhGchYwDf0IE+5hg6uKWk2Ewf0AjtjGoywz58iynCprYh0AG0kfQrSU8KJUyrTLgGIOg9h8NmlOZoOSqIKVZY+0HKfIFP/XWlpES5rAgEpDp1KZkbe8jdbjLy2xS4AT+VNId8tBEYB17vgHvjK8LcvJU88h+iJWU5KMEMOow+P3Wa+3SD718ajyeaaPbmkkZLUTR1v29X+RF9C4="
+  api_key: ${GITHUB_TOKEN}
   file: ${PROJECT_NAME}-v${VERSION}-${PLATFORM}.tar.gz
   skip_cleanup: true
   draft: true
