@@ -21,7 +21,7 @@ install:
         . ".\Install Rust.ps1"
         . ".\Install MinGW.ps1"
 
-        if ((git log -1) -match "[vV]ersion change to v?(.*)") {
+        if ($env:APPVEYOR_REPO_COMMIT_MESSAGE -match "[vV]ersion change to v?(.*)") {
           $env:PROJECT_VERSION = $matches[1]
           $env:DEPLOY = "true"
         }
