@@ -16,7 +16,7 @@ if (git tag -l "$env:PROJECT_VERSION") {
 } else {
   echo "Creating tag $env:PROJECT_VERSION"
   git tag $env:PROJECT_VERSION -am "Version $env:PROJECT_VERSION" $APPVEYOR_REPO_COMMIT
-  git push tag $env:PROJECT_VERSION
+  git push "https://github.com/$env:APPVEYOR_REPO_NAME" tag $env:PROJECT_VERSION
 }
 
 # Create the release archive
