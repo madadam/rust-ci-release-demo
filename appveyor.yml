@@ -7,8 +7,10 @@ environment:
       # - Then go to 'https://ci.appveyor.com/tools/encrypt' and enter the newly generated token.
       # - Enter the "encrypted value" below
       secure: o0zMhi1mljivXoMvdi567EDf0v8UraRJyA22enzbzhUL5uwBa7Vy5m13TzgNbaqc
-    RUST_BACKTRACE: 1
+    GITHUB_USER: madadam
+    GITHUB_EMAIL: adam.ciganek@gmail.com
     PROJECT_NAME: hello_world
+    RUST_BACKTRACE: 1
   matrix:
     - RUST_VERSION: stable
 branches:

@@ -3,6 +3,8 @@ language: generic
 env:
   global:
     - secure: "SV6aoQCl4bbIoWlK40HVO2GGSpFTE4iq34BeGhVtRa3a4PdNOHe96o+g7rJQdcYQLUD8mtH2Tb2SOqQbP01BITKoxqHmvGNtitUiLoHqAEBtbcswMt5yxh87x6xdgzZMiw5jCFzqJ9ZvacVIumZ1tcZd+HppF6O53tDbp5ABaruTxNwAy+03hSaI2D2BTgDkBbKWPmnS3Q//f0rKKgmGiATXnTN3jxIqb0yI8DbmaRvXHAL/340JfBYJZSwswO8uDZ0Fb0Weg7+GTeZ6SzwskrE9O6+jqhAEbaoeS0VPB+CA1LfPfKb3tyzsDewpaLvneW3bFt/e6V+KWYUiiMBVvoqW3Dq6ix1Fv2TgnkILjoxtOW+B7YT5l5JC2YQh/rM89nw6yOwLfumMrfEbcX5e7c9LE85yiewEg7MyNk5730wgfY9DfQh7qqmGD5PygXIVvEXLJgy89rde6ppG7TjLo81xFcF3upAEz4EaD8veNMJYrdy2tKk/dBAjMe/87MZbO8fUn7B9PJCNhaX8IGsmoFFiytxc3lb2bovl1nTxESYNJvHHaWLCY/q8i8FIhoTBbm26nFgAtnGtvudS6Lku8xFbjKSgrqMfKYH9WPUlPMozf1wuRGoo8c1auYnudN0OiUKCrbGv3HkWHl1YmDSz3cG8cBWPHSp+ge87FvtzEKw="
+    - GITHUB_USER=madadam
+    - GITHUB_EMAIL=adam.ciganek@gmail.com
     - PROJECT_NAME=hello_world
 
 matrix:

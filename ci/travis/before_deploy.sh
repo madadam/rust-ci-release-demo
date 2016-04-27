@@ -12,8 +12,8 @@ export RUST_BACKTRACE=1
 cargo build --target $TARGET --release
 
 # Tag this commit if not already tagged.
-git config --global user.email adam.ciganek@gmail.com
-git config --global user.name madadam
+git config --global $GITHUB_EMAIL
+git config --global $GITHUB_USER
 git fetch --tags
 
 if [ -z $(git tag -l "$PROJECT_VERSION") ]; then
