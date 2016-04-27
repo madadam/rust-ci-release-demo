@@ -7,14 +7,20 @@ git config --global user.email adam.ciganek@gmail.com
 git config --global user.name madadam
 
 git config --global credential.helper store
-Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GITHUB_TOKEN):x-oauth-basic@github.com`n"
+Add-Content "$env:USERPROFILE\.git-credentials" "https://$env:GITHUB_TOKEN:x-oauth-basic@github.com`n"
 
 git fetch --tags
+
+echo "This tag: $env:PROJECT_VERSION"
+echo "Existing tags:"
+git tag -l
 
 if (git tag -l "$env:PROJECT_VERSION") {
   echo "Creating tag $env:PROJECT_VERSION"
   git tag $env:PROJECT_VERSION -am "Version $env:PROJECT_VERSION" $APPVEYOR_REPO_COMMIT
   git push tag $env:PROJECT_VERSION
+} else {
+  echo "Tag $env:PROJECT_VERSION already exists"
 }
 
 # Create the release archive
