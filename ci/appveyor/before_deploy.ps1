@@ -5,10 +5,6 @@ cargo build --release
 # Tag this commit if not already tagged.
 git config --global user.email adam.ciganek@gmail.com
 git config --global user.name madadam
-
-git config --global credential.helper store
-Add-Content "$env:USERPROFILE\.git-credentials" "https://$env:GITHUB_TOKEN:x-oauth-basic@github.com`n"
-
 git fetch --tags
 
 if (git tag -l "$env:PROJECT_VERSION") {
@@ -16,7 +12,7 @@ if (git tag -l "$env:PROJECT_VERSION") {
 } else {
   echo "Creating tag $env:PROJECT_VERSION"
   git tag $env:PROJECT_VERSION -am "Version $env:PROJECT_VERSION" $APPVEYOR_REPO_COMMIT
-  git push "https://github.com/$env:APPVEYOR_REPO_NAME" tag $env:PROJECT_VERSION
+  git push "https://$env:GITHUB_TOKEN@github.com/$env:APPVEYOR_REPO_NAME" tag $env:PROJECT_VERSION
 }
 
 # Create the release archive

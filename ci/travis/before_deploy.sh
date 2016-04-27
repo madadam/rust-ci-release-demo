@@ -16,15 +16,15 @@ git config --global user.email adam.ciganek@gmail.com
 git config --global user.name madadam
 git fetch --tags
 
-if [ -z $(git tag -l "$VERSION") ]; then
-  git tag $VERSION -am "Version $VERSION" $TRAVIS_COMMIT
-  git push https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG} tag $VERSION > /dev/null 2>&1
+if [ -z $(git tag -l "$PROJECT_VERSION") ]; then
+  git tag $PROJECT_VERSION -am "Version $PROJECT_VERSION" $TRAVIS_COMMIT
+  git push https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG} tag $PROJECT_VERSION > /dev/null 2>&1
 fi
 
 TMP_DIR=$(mktempd)
 OUT_DIR=$(pwd)
 
-NAME="$PROJECT_NAME-v$VERSION-$PLATFORM"
+NAME="$PROJECT_NAME-v$PROJECT_VERSION-$PLATFORM"
 
 mkdir $TMP_DIR/$NAME
 cp target/$TARGET/release/$PROJECT_NAME $TMP_DIR/$NAME

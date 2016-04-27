@@ -27,7 +27,7 @@ cache:
 
 before_install:
   - export PATH="$PATH:$HOME/.cargo/bin"
-  - export VERSION=$(git log -1 | grep -i "version change to" | sed "s/.*[vV]ersion change to v\{0,1\}//")
+  - export PROJECT_VERSION=$(git log -1 | grep -i "version change to" | sed "s/.*[vV]ersion change to v\{0,1\}//")
 
 install:
   - ./ci/travis/install.sh
@@ -41,12 +41,12 @@ before_deploy:
 deploy:
   provider: releases
   api_key: ${GITHUB_TOKEN}
-  file: ${PROJECT_NAME}-v${VERSION}-${PLATFORM}.tar.gz
+  file: ${PROJECT_NAME}-v${PROJECT_VERSION}-${PLATFORM}.tar.gz
   skip_cleanup: true
   draft: true
-  tag_name: ${VERSION}
+  tag_name: ${PROJECT_VERSION}
   on:
-      condition: ("${CHANNEL:-stable}"=stable) && (-n "$VERSION")
+      condition: ("${CHANNEL:-stable}"=stable) && (-n "$PROJECT_VERSION")
 
 notifications:
   email: never
