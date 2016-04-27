@@ -1,10 +1,10 @@
-$NAME = "$env:PROJECT_NAME-v$env:PROJECT_VERSION-$env:PLATFORM"
+$NAME = "$env:PROJECT_NAME-v$env:PROJECT_VERSION-windows-$env:PLATFORM"
 
-echo "Commit message: $env:APPVEYOR_REPO_COMMIT_MESSAGE"
-echo "PROJECT_NAME:    $env:PROJECT_NAME"
-echo "PROJECT_VERSION: $env:PROJECT_VERSION"
-echo "PLATFORM:        $env:PLATFORM"
-echo "Name: $NAME"
+# echo "Commit message: $env:APPVEYOR_REPO_COMMIT_MESSAGE"
+# echo "PROJECT_NAME:    $env:PROJECT_NAME"
+# echo "PROJECT_VERSION: $env:PROJECT_VERSION"
+# echo "PLATFORM:        $env:PLATFORM"
+# echo "Name: $NAME"
 
 cargo build --release
 
