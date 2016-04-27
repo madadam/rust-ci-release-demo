@@ -12,6 +12,7 @@ Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GITHUB_TOKEN):x-
 git fetch --tags
 
 if (git tag -l "$env:PROJECT_VERSION") {
+  echo "Creating tag $env:PROJECT_VERSION"
   git tag $env:PROJECT_VERSION -am "Version $env:PROJECT_VERSION" $APPVEYOR_REPO_COMMIT
   git push tag $env:PROJECT_VERSION
 }
