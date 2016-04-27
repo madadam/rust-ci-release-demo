@@ -13,7 +13,7 @@ git fetch --tags
 
 if (git tag -l "$env:PROJECT_VERSION") {
   git tag $env:PROJECT_VERSION -am "Version $env:PROJECT_VERSION" $APPVEYOR_REPO_COMMIT
-  git push "https://github.com/${APPVEYOR_REPO_NAME}" tag $env:PROJECT_VERSION
+  git push tag $env:PROJECT_VERSION
 }
 
 # Create the release archive
