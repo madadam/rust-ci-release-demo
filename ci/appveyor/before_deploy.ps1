@@ -1,5 +1,7 @@
 $NAME = "$env:PROJECT_NAME-v$env:PROJECT_VERSION-$env:PLATFORM"
 
+echo "Name: $NAME"
+
 cargo build --release
 
 # Tag this commit if not already tagged.

@@ -44,7 +44,7 @@ before_deploy:
 
 deploy:
   provider: GitHub
-  tag: $PROJECT_VERSION
+  tag: $(PROJECT_VERSION)
   draft: true
   # All the zipped artifacts will be deployed
   artifact: /.*\.zip/
