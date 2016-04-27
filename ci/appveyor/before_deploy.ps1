@@ -3,8 +3,8 @@ $NAME = "$env:PROJECT_NAME-v$env:PROJECT_VERSION-windows-$env:PLATFORM"
 cargo build --release
 
 # Tag this commit if not already tagged.
-git config --global $env:GITHUB_EMAIL
-git config --global $env:GITHUB_USER
+git config --global user.name MaidSafe-QA
+git config --global user.email qa@maidsafe.net
 git fetch --tags
 
 if (git tag -l "$env:PROJECT_VERSION") {
