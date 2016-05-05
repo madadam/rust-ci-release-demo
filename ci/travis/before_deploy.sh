@@ -21,10 +21,11 @@ if [ -z $(git tag -l "$PROJECT_VERSION") ]; then
   git push https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG} tag $PROJECT_VERSION > /dev/null 2>&1
 fi
 
+# Create the release archive
+NAME="$PROJECT_NAME-v$PROJECT_VERSION-$PLATFORM"
+
 TMP_DIR=$(mktempd)
 OUT_DIR=$(pwd)
-
-NAME="$PROJECT_NAME-v$PROJECT_VERSION-$PLATFORM"
 
 mkdir $TMP_DIR/$NAME
 cp target/$TARGET/release/$PROJECT_NAME $TMP_DIR/$NAME

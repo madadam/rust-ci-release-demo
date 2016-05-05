@@ -4,3 +4,4 @@ version = "0.0.66"
 authors = ["Adam Cigánek <adam.ciganek@gmail.com>"]
 
 [dependencies]
+# sodiumoxide = "~0.0.10"

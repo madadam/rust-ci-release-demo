@@ -1,4 +1,3 @@
-$NAME = "$env:PROJECT_NAME-v$env:PROJECT_VERSION-windows-$env:PLATFORM"
 
 cargo build --release
 
@@ -16,6 +15,8 @@ if (git tag -l "$env:PROJECT_VERSION") {
 }
 
 # Create the release archive
+$NAME = "$env:PROJECT_NAME-v$env:PROJECT_VERSION-windows-$env:PLATFORM"
+
 New-Item -ItemType directory -Path staging
 New-Item -ItemType directory -Path staging\$NAME
 Copy-Item target\release\$env:PROJECT_NAME.exe staging\$NAME
